@@ -1,34 +1,20 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity 0.8.18;
-
+//SPDX-License-Identifier: MIT
+pragma solidity 0.8.7;
 contract nakulerrorhandling{
-
-    uint public count=0;
-
-    function testRequire(uint amount) public{
-        require(amount > 818,"Amount should be greater than 818");
-        count++;
+    uint public num;
+    function testRequire(uint num1) public pure{
+        require(num1<10,"Number is greater than 10, please enter number smaller than 10");
     }
-
-    function testRevert(uint amount) public {
-        if(!(amount > 818)){
-            revert("Amount must be greater than 818");
+    function testAssert(uint num2) public pure {
+        assert(num2<10);
+    }
+    function testRevert(uint num3) public{
+        if(num3>10){
+          revert("Number is greater than 10");
         }
-        count++;
-    }
-
-    function testAssert(uint amount) public{
-        assert(amount > 512);
-        count++;
-    }
-
-    error CustomError(uint amount, string message);
-
-    function testCustomError(uint amount) public{
-        if(amount <= 267){
-            revert CustomError(amount,"Amount must be greater than 267");
+        else{
+            num=num3;
         }
-        count++;
+        
     }
 }
